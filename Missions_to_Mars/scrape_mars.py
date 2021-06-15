@@ -29,6 +29,7 @@ def scrape():
 	# website for image
 	url2 = 'https://spaceimages-mars.com/'
 	browser.visit(url2)
+	time.sleep(1)
 	html2 = browser.html
 	soup2 = bs(html2,'html.parser')
 	results3 = soup2.find('div', class_='floating_text_area')
@@ -38,6 +39,7 @@ def scrape():
 	# website for facts
 	url3 = 'https://galaxyfacts-mars.com/'
 	browser.visit(url3)
+	time.sleep(1)
 	html3 = browser.html
 	soup3 = bs(html3,'html.parser')
 	table = pd.read_html(url3)
@@ -51,6 +53,7 @@ def scrape():
 	# website for mars images cerberus
 	url4 = 'https://marshemispheres.com/cerberus.html'
 	browser.visit(url4)
+	time.sleep(1)
 	html4 = browser.html
 	soup4 = bs(html4,'html.parser')
 	cerberus = soup4.find('img', class_="wide-image")['src']
@@ -61,6 +64,7 @@ def scrape():
 	# website for mars images schiaparelli
 	url5 = 'https://marshemispheres.com/schiaparelli.html'
 	browser.visit(url5)
+	time.sleep(1)
 	html5 = browser.html
 	soup5 = bs(html5,'html.parser')
 	schiaparelli = soup5.find('img', class_="wide-image")['src']
@@ -71,6 +75,7 @@ def scrape():
 	# website for mars images syrtis
 	url6 = 'https://marshemispheres.com/syrtis.html'
 	browser.visit(url6)
+	time.sleep(1)
 	html6 = browser.html
 	soup6 = bs(html6,'html.parser')
 	syrtis = soup6.find('img', class_="wide-image")['src']
@@ -81,6 +86,7 @@ def scrape():
 	# website for mars images valles
 	url7 = 'https://marshemispheres.com/valles.html'
 	browser.visit(url7)
+	time.sleep(1)
 	html7 = browser.html
 	soup7 = bs(html7,'html.parser')
 	valles = soup7.find('img', class_="wide-image")['src']
@@ -96,8 +102,16 @@ def scrape():
     {"title": valles_title2, "img_url": valles_image_url}
 	]
 
+	mars_info = {
+        "title": news_title,
+        "paragraph": news_p,
+        "featured_image": featured_image_url,
+        "table": facts_html,
+        "hem_image_urls": hemisphere_image_urls 
+    }
+    
 	# Close the browser after scraping
-    browser.quit()
+	browser.quit()
 
     # Return results
-    return mars_scrape
+	return mars_info

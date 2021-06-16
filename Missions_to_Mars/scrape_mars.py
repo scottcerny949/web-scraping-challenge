@@ -46,7 +46,8 @@ def scrape():
 	facts = table[0]
 	facts.columns = ["","Mars","Earth"]
 	facts.set_index("", inplace=True)
-	facts_html = facts.to_html('facts.html')
+	#facts_html = facts.to_html('facts.html')
+	facts = facts.to_html()
 
 	main_url = 'https://marshemispheres.com/'
 
@@ -106,10 +107,11 @@ def scrape():
         "title": news_title,
         "paragraph": news_p,
         "featured_image": featured_image_url,
-        "table": facts_html,
-        "hem_image_urls": hemisphere_image_urls 
+        "table": facts,
+        "hemisphere_image_urls": hemisphere_image_urls 
     }
     
+
 	# Close the browser after scraping
 	browser.quit()
 
